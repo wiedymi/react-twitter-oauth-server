@@ -22,8 +22,8 @@ if (process.env.NODE_ENV === 'production') {
 // run the server in https mode locally
 else {
   const certOptions = {
-    key: fs.readFileSync('certs/localhost.key'),
-    cert: fs.readFileSync('certs/localhost.crt')
+    key: fs.readFileSync('cers/localhost.key'),
+    cert: fs.readFileSync('cers/localhost.crt')
   }
   server = https.createServer(certOptions, app)
 }
@@ -34,12 +34,14 @@ app.use(passport.initialize())
 passportInit()
 
 // Accept requests from our client
+
 app.use(cors({
   origin: CLIENT_ORIGIN
 })) 
 
 // saveUninitialized: true allows us to attach the socket id to the session
 // before we have athenticated the user
+
 app.use(session({ 
   secret: process.env.SESSION_SECRET, 
   resave: true, 
